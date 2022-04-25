@@ -1,10 +1,12 @@
 # From https://www.kaggle.com/theoviel/evaluation-metric-folds-baseline
 
-from sklearn.metrics import f1_score
 import numpy as np
 
+from sklearn.metrics import f1_score
+from typing import List
 
-def micro_f1(preds: list[list[int]], truths: list[list[int]]) -> float:
+
+def micro_f1(preds: List[List[int]], truths: List[List[int]]) -> float:
     """
     Micro F1 on binary arrays.
 
@@ -21,7 +23,7 @@ def micro_f1(preds: list[list[int]], truths: list[list[int]]) -> float:
     return f1_score(truths, preds)
 
 
-def spans_to_binary(spans: list[list[int]], length: int = None) -> list[list[int]]:
+def spans_to_binary(spans: List[List[int]], length: int = None) -> List[List[int]]:
     """
     Converts spans to a binary array indicating whether each character is in the span.
 
@@ -40,7 +42,7 @@ def spans_to_binary(spans: list[list[int]], length: int = None) -> list[list[int
     return binary
 
 
-def span_micro_f1(preds: list[list[int]], truths: list[list[int]]) -> float:
+def span_micro_f1(preds: List[List[int]], truths: List[List[int]]) -> float:
     """
     Micro F1 on spans.
 
@@ -71,10 +73,10 @@ def span_micro_f1(preds: list[list[int]], truths: list[list[int]]) -> float:
 
 def location_to_span(location):
     """
-    Converts location to spans.
+    Converts location dataframe to spans.
 
     Args:
-        location (list[str]): Location. E.g., ['161 178', '161 169;179 183']
+        location (list[str]): Location. E.g., ['161 178', 161 169;179 183']
 
     Returns:
         list[list[int[2]]]: Spans. E.g., [[161, 178], [161, 169], [179, 183]]
