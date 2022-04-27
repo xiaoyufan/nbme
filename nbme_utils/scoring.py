@@ -69,26 +69,3 @@ def span_micro_f1(preds: List[List[int]], truths: List[List[int]]) -> float:
         bin_preds.append(spans_to_binary(pred, length))
         bin_truths.append(spans_to_binary(truth, length))
     return micro_f1(bin_preds, bin_truths)
-
-
-def location_to_span(location):
-    """
-    Converts location dataframe to spans.
-
-    Args:
-        location (list[str]): Location. E.g., ['161 178', 161 169;179 183']
-
-    Returns:
-        list[list[int[2]]]: Spans. E.g., [[161, 178], [161, 169], [179, 183]]
-    """
-    spans = []
-    for loc in location:
-        if ";" in loc:
-            loc = loc.split(';')
-        else:
-            loc = [loc]
-
-        for l in loc:
-            spans.append(list(np.array(l.split(' ')).astype(int)))
-
-    return spans
