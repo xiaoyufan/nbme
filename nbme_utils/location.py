@@ -4,7 +4,7 @@ import numpy as np
 from typing import List
 
 
-def location_to_span(location: List[str]):
+def locations_to_spans(location: List[str]) -> List[List[int]]:
     """
     Converts location dataframe to spans.
 

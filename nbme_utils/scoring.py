@@ -1,4 +1,4 @@
-# From https://www.kaggle.com/theoviel/evaluation-metric-folds-baseline
+# Adpated from https://www.kaggle.com/theoviel/evaluation-metric-folds-baseline
 
 import numpy as np
 
@@ -42,16 +42,16 @@ def spans_to_binary(spans: List[List[int]], length: int = None) -> List[List[int
     return binary
 
 
-def span_micro_f1(preds: List[List[int]], truths: List[List[int]]) -> float:
+def span_micro_f1(preds: List[List[List[int]]], truths: List[List[List[int]]]) -> float:
     """
     Micro F1 on spans.
 
     Args:
-        preds (list of lists of two ints): Prediction spans.
+        preds (list of lists of lists two ints): Prediction spans of batch of sequences.
             E.g., [[[696, 724]], [[668, 693]], [[203, 217]], [[70, 91], [176, 183]],
                   [[222, 258]], [[321, 329], [404, 413], [652, 661]], [[26, 38], [96, 118]],
                   [[56, 69]], [[5, 9]], [[10, 11]]].
-        truths (list of lists of two ints): Ground truth spans.
+        truths (list of lists of lists of two ints): Ground truth spans of batch of sequences.
             E.g., [[[696, 724]], [[668, 693]], [[203, 217]], [[70, 91], [176, 183]],
                   [[222, 258]], [[321, 329], [404, 413]], [[26, 38], [96, 118]], [[56, 69]],
                   [[5, 9]], [[10, 11]]].
