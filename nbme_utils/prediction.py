@@ -1,12 +1,10 @@
 TRUE_THRESHOLD = 0.5
 
 
-def logits_to_spans(batch_logits, batch_encoded):
+def logits_to_spans(logits, offset_mapping, sequence_ids):
     batch_spans = []
 
-    for seq_logits, seq_offsets, seq_ids in zip(batch_logits,
-                                                batch_encoded['offset_mapping'],
-                                                batch_encoded['sequence_ids']):
+    for seq_logits, seq_offsets, seq_ids in zip(logits, offset_mapping, sequence_ids):
         seq_spans = []
         is_prev_true = False
 

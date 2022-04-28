@@ -4,18 +4,18 @@ import numpy as np
 from typing import List
 
 
-def locations_to_spans(location: List[str]) -> List[List[int]]:
+def locations_to_spans(locations: List[str]) -> List[List[int]]:
     """
     Converts location dataframe to spans.
 
     Args:
-        location (list[str]): Location. E.g., ['161 178', 161 169;179 183']
+        locations (list[str]): Location. E.g., ['161 178', 161 169;179 183']
 
     Returns:
         list[list[int[2]]]: Spans. E.g., [[161, 178], [161, 169], [179, 183]]
     """
     spans = []
-    for loc in location:
+    for loc in locations:
         if ";" in loc:
             loc = loc.split(';')
         else:
