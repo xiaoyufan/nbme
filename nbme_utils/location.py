@@ -37,5 +37,5 @@ def spans_to_locations(spans: List[List[int]]) -> List[str]:
     Returns:
         list[str]: Location. E.g., ['161 178; 161 169; 179 183']
     """
-    locations = ['; '.join(span) for span in spans]
+    locations = ['; '.join(map(str, span)) for span in spans]
     return locations
