@@ -1,3 +1,6 @@
+from torch import nn
+
+
 TRUE_THRESHOLD = 0.5
 
 
@@ -5,11 +8,12 @@ def logits_to_spans(logits, offset_mapping, sequence_ids):
     batch_spans = []
 
     for seq_logits, seq_offsets, seq_ids in zip(logits, offset_mapping, sequence_ids):
+        seq_preds = nn.Sigmoid(seq_logits)
         seq_spans = []
         is_prev_true = False
 
-        for token_logit, token_offsets, token_seq_id in zip(seq_logits, seq_offsets, seq_ids):
-            if token_seq_id != 0 or token_logit < TRUE_THRESHOLD:
+        for token_pred, token_offsets, token_seq_id in zip(seq_preds, seq_offsets, seq_ids):
+            if token_seq_id != 0 or token_pred < TRUE_THRESHOLD:
                 is_prev_true = False
                 continue
 
