@@ -25,7 +25,8 @@ def logits_to_spans(logits, offset_mapping, sequence_ids):
 
             if is_prev_true:
                 # Update end offset of the current span
-                seq_spans[-1][1] = token_end
+                prev_start, prev_end = seq_spans.pop()
+                seq_spans.append((prev_start, token_end))
             else:
                 seq_spans.append((token_start, token_end))
 
