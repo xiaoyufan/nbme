@@ -1,14 +1,18 @@
-from torch import nn
+import numpy as np
 
 
 TRUE_THRESHOLD = 0.5
+
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
 
 def logits_to_spans(logits, offset_mapping, sequence_ids):
     batch_spans = []
 
     for seq_logits, seq_offsets, seq_ids in zip(logits, offset_mapping, sequence_ids):
-        seq_preds = nn.Sigmoid(seq_logits)
+        seq_preds = sigmoid(seq_logits)
         seq_spans = []
         is_prev_true = False
 
